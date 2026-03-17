@@ -1,0 +1,24 @@
+w19:
+  vm:
+    name: win2019
+    ram: 4096
+    vcpus: 4
+    disk_size: 20G
+    network: default
+
+  windows:
+    iso: iso/windows_server_2019_eval.iso
+    virtio_iso: iso/virtio-win.iso
+    edition: win2k19
+
+  admin:
+    username: administrator
+    password: password
+
+  user:
+    username: analyst
+    password: password
+    groups: Administrators
+
+  network:
+    dhcp: true
