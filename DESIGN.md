@@ -52,3 +52,8 @@ Při následném "ladění", aby instalace probíhala bez grafického rozhraní 
 V případě instalace Ubuntu je požadovaný konfigurační soubor `user-data` vygenerován kompletně jako text ze skriptu `generate_metadata.sh`. I zde by, stejně jako v případě instalace Windows, bylo vhodnější použití šablony, která by se modifikovala na požadované hodnoty. Pak by byly scripty přehlednější a user-data snadnější na management. V rámci dema je ale vygenerování v zásadě statického textového souboru akceptovatelné.
 
 Naimportování jednoduchého `index.html` je zde řešeno jako přímý zápis zakódovaného obsahu v base64 `INDEX_CONTENT=$(base64 -w0 "$INDEX")` do souboru pomocí bloku `write_files:` v autoinstall v user-data. Toto řešení opravdu není vhodné pro větší množství souborů nebo dat, ale je to něco jiného oproti přístupu u nasazení VM Windows. 
+
+---
+## Závěrečné hodnocení
+Zpětně hodnotím jako špatné rozhodnutí zkusit vytvářet virtuální stroje v pro mě novém, neznámém prostředí qemu/kvm. Výsledek by byl jistě uspokojivější, kdybych od začátku používal například VirtualBox, se kterým mám více zkušeností.  
+Z dvou požadovaných VM se mi podařilo scriptem nasadit a nastavit dle zadání pouze jeden a ani ten ne zcela bezobslužně. Jsem z konečného výsledku poměrně zklamaný. 
