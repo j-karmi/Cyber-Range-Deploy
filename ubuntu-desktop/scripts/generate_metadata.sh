@@ -41,11 +41,11 @@ fi
 #Vyplnene promenne prilepim na konec bloku s uzivateli
 USER_BLOCK="$USER_BLOCK
     - name: $U
-      groups: $GROUPS
+      groups: sudo
       lock_passwd: false
       passwd: $P
       shell: /bin/bash"
-
+# ^^ Pri "groups: $GROUPS" to v yaml vygeneruje "groups: 1000" -- nechapu TODO
 done
 
 ##Parsovani balicku k instalaci:

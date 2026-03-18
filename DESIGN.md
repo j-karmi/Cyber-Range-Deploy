@@ -60,4 +60,4 @@ Naimportování jednoduchého `index.html` je zde řešeno jako přímý zápis 
 ---
 ## Závěrečné hodnocení
 Zpětně hodnotím jako špatné rozhodnutí zkusit vytvářet virtuální stroje v pro mě novém, neznámém prostředí qemu/kvm. Výsledek by byl jistě uspokojivější, kdybych od začátku používal například VirtualBox, se kterým mám více zkušeností.  
-Z dvou požadovaných VM se mi podařilo scriptem nasadit a nastavit dle zadání pouze jeden a ani ten ne zcela bezobslužně. Jsem z konečného výsledku poměrně zklamaný. 
+Z dvou požadovaných VM se mi podařilo scriptem nasadit a nastavit dle zadání obě dvě ale ne zcela bezobslužně. Jsem z konečného výsledku poměrně zklamaný, protože nutnost odklikávat cokoliv během deploymentu docela kazí celý smysl nasazování VM pomocí scriptů.

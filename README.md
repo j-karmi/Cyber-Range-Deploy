@@ -23,8 +23,8 @@ Script `destroy.sh` smaže oba vytvořené vitruální stroje a vrátí systém 
 ## TODOs
 - vyřešení problému s `Press any key to boot form CD or DVD...` u Windows
 - vyřešení správného importu virtio driverů pro disk bez nutnosti manuálního hledání u Windows (*"Load driver" --> "Browse" --> F:\viostor\2k19\amd64 --> OK*)
-- funkční načtení seed.iso pro nastavení po instalaci u Ubuntu
-- dynamické generpvání bloku s uživateli v autounattend.xml. Nyní se doplní pouze jeden uživatel a administrator na předpřipravené placeholdery.
+- 100% bezobslužná instalace i u Linuxu (headless)
+- dynamické generování bloku s uživateli v autounattend.xml. Nyní se doplní pouze jeden uživatel a administrator na předpřipravené placeholdery.
 ---
 # Instalace VM Windows Server 2019
 <img height="50" src="https://www.zubairalexander.com/blog/wp-content/uploads/2022/04/ws2019-675-335-860x520.png">
@@ -68,5 +68,5 @@ Sekvence instalace probíhá v pořadí:
 - stažení iso souboru `ubuntu-24.04.4-desktop-amd64.iso`
 - vygenerování `user-data` dle atributů v ubuntu-desktop/config.yaml a statického `meta-data` a následné vytvoření `seed.iso`
 - vytvoření VM pomocí `virt-install`
-- grafický instalátor reportuje 2 chyby, špatně napsaný user-data?? <-- TODO
-- !! NEAPLIKOVÁNÍ seed.iso !! --> po instalaci je použitelný pouze defaultní uživatel `ubuntu` a není spuštěný web server ani naimporotvaný index.html <-- TODO
+- grafický instalátor potřebuje odsouhlasit načtené hodnoty z config.yaml/seed.iso a odklepnout "Install"
+- zbytek instalace dobíhá automaticky
