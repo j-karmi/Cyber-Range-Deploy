@@ -24,6 +24,10 @@ Po spuštění hlavního scriptu je uživatel dotázán, který VM chce nasadit:
 - [4] --> Konec
 
 ---
+### config.yaml
+Konfigurční soubor `config.yaml` obsahuje základní sadu uživatelem definovaných dat, která jsou potřbea pro bezobslužnou instalaci VM. Rozhodl jsem se nepoužívat jeden .yaml soubor v kořenovém adresáři, který by byl sdílený pro oba VM (Windows i Linux), ale rozdělit jej na dvě části a umístit je ke zbytku scriptů do odpovídající složky dle OS. Tento přístup mně přijde logičtější z hlediska spravování. Tímto řešením příliš nenabobtná v případě použití většího množství VM a také jsou jednotlivé složky pro různé OS lépe přenositelné.
+
+--- 
 ## Instalace Windows serveru 2019
 
 Po vybrání první možnosti se postupně spouští ostatní pomocné scripty. 
