@@ -4,8 +4,8 @@ set -e
 
 CONFIG=config.yaml
 
-NAME=$(yq -r '.vm.name' $CONFIG)
-INDEX=$(yq -r '.web.index_file' $CONFIG)
+NAME=$(yq -r '.ubu.vm.name' $CONFIG)
+INDEX=$(yq -r '.ubu.web.index_file' $CONFIG)
 
 WORKDIR="./build-$NAME"
 mkdir -p $WORKDIR
@@ -16,16 +16,16 @@ mkdir -p $WORKDIR
 INDEX_CONTENT=$(base64 -w0 "$INDEX")
 
 # Parsovani uzivatelu do user-data. Prnvi je primarni do identity, zbytek je obycejni users
-PRIMARY_USER=$(yq -r '.users[0].username' $CONFIG)
-PRIMARY_PASS=$(yq -r '.users[0].password' $CONFIG)
+PRIMARY_USER=$(yq -r '.ubu.users[0].username' $CONFIG)
+PRIMARY_PASS=$(yq -r '.ubu.users[0].password' $CONFIG)
 
 USER_BLOCK=""
-USER_COUNT=$(yq -r '.users | length' $CONFIG)
+USER_COUNT=$(yq -r '.ubu.users | length' $CONFIG)
 
 for ((i=0;i<$USER_COUNT;i++)); do
-U=$(yq -r ".users[$i].username" $CONFIG)
-P=$(yq -r ".users[$i].password" $CONFIG)
-SUDO=$(yq -r ".users[$i].sudo" $CONFIG)
+U=$(yq -r ".ubu.users[$i].username" $CONFIG)
+P=$(yq -r ".ubu.users[$i].password" $CONFIG)
+SUDO=$(yq -r ".ubu.users[$i].sudo" $CONFIG)
 if [ "$SUDO" = "true" ]; then
 GROUPS="sudo"
 else
@@ -44,10 +44,10 @@ done
 
 ##Parsovani balicku k instalaci:
 PACKAGES_BLOCK=""
-PACKAGES_COUNT=$(yq -r '.packages | length' $CONFIG)
+PACKAGES_COUNT=$(yq -r '.ubu.packages | length' $CONFIG)
 
 for ((i=0;i<$PACKAGES_COUNT;i++)); do
-PACKAGE=$(yq -r ".packages[$i]" $CONFIG)
+PACKAGE=$(yq -r ".ubu.packages[$i]" $CONFIG)
 PACKAGES_BLOCK="$PACKAGES_BLOCK
     - $PACKAGE"
 
@@ -95,19 +95,19 @@ $PACKAGE_BLOCK
     users:
 $USER_BLOCK
 
-    ssh_pwauth: true
+  ssh_pwauth: true
     
-    write_files:
-      - path: /var/www/html/index.html
-        permissions: '0644'
-        encoding: b64
-        content: $INDEX_CONTENT
+  write_files:
+    - path: /var/www/html/index.html
+      permissions: '0644'
+      encoding: b64
+      content: $INDEX_CONTENT
 
-    runcmd:
-      - apt install apache2 -y
-      - systemctl enable apache2
-      - systemctl restart apache2
-      - systemctl enable qemu-guest-agent
+  runcmd:
+    - apt install apache2 -y
+    - systemctl enable apache2
+    - systemctl restart apache2
+    - systemctl enable qemu-guest-agent
 EOF
 
 # Z user-data a meta-data kompiluji seed.iso s autoinstalacni konfiguraci

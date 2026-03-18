@@ -7,7 +7,7 @@ CONFIG=config.yaml
 # Nazev slozky pro build
 BUILD=build
 
-NAME=$(yq -r '.w19.vm.name' $CONFIG)
+NAME=$(yq -r '.ubu.vm.name' $CONFIG)
 
 DISK_NAME=disk
 

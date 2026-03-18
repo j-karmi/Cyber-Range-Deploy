@@ -1,38 +1,39 @@
-vm:
-  name: ubuntu
-  ram: 4096
-  vcpus: 2
-  disk_gb: 20
+ubu:
+  vm:
+    name: ubuntu
+    ram: 4096
+    vcpus: 2
+    disk_gb: 20
 
-os:
-  iso: ubuntu-24.04-server-cloudimg-amd64.img
-  #iso: ubuntu-24.04.4-desktop-amd64.iso
-  variant: ubuntu24.04
+  os:
+    iso: ubuntu-24.04-server-cloudimg-amd64.img
+    #iso: ubuntu-24.04.4-desktop-amd64.iso
+    variant: ubuntu24.04
  
-system:
-  hostname: ubuntu
-  timezone: Europe/Prague
-  locale: cs_CZ
-  keyboard: cz
+  system:
+    hostname: ubuntu
+    timezone: Europe/Prague
+    locale: cs_CZ
+    keyboard: cz
 
-network:
-  libvirt_network: default
+  network:
+    libvirt_network: default
 
-users:
-  - username: admin
-    # "password" --> openssl passwd -6
-    password: $6$dUn8peCqktx1IVez$XZ12eRAZAsF9OZkgMjB8il1cpZrJBAN5D3lgmW2GJW/fmlzPWSSIugkPWBuuFY0/WamB0Fo5oGjDQF3nMjPsy/
-    sudo: "true"
+  users:
+    - username: admin
+      # "password" --> openssl passwd -6
+      password: $6$dUn8peCqktx1IVez$XZ12eRAZAsF9OZkgMjB8il1cpZrJBAN5D3lgmW2GJW/fmlzPWSSIugkPWBuuFY0/WamB0Fo5oGjDQF3nMjPsy/
+      sudo: "true"
 
-  - username: analyst
-    # "Password" --> openssl passwd -6
-    password: $6$4AYqxU4r76.COVDu$jWerBCGFRprYC3U5G5aH31IV.vkKRHyHeTwAdOR1/VQYJIv1BvA4skxhCGlPGmzHUfMkgf3nT0rbPMOV6su6M/
-    sudo: "false"
+    - username: analyst
+      # "Password" --> openssl passwd -6
+      password: $6$4AYqxU4r76.COVDu$jWerBCGFRprYC3U5G5aH31IV.vkKRHyHeTwAdOR1/VQYJIv1BvA4skxhCGlPGmzHUfMkgf3nT0rbPMOV6su6M/
+      sudo: "false"
 
-web:
-  index_file: ./templates/index.html
+  web:
+    index_file: ./templates/index.html
 
-packages:
-  - apache2
-  - qemu-guest-agent
-  - openssh-server
+  packages:
+    - apache2
+    - qemu-guest-agent
+    - openssh-server

@@ -5,7 +5,7 @@ set -e
 CONFIG=config.yaml
 
 ISO_DIR="iso"
-ISO_NAME=$(yq -r '.os.iso' $CONFIG)
+ISO_NAME=$(yq -r '.ubu.os.iso' $CONFIG)
 ISO_PATH="$ISO_DIR/$ISO_NAME"
 
 BASE_URL="https://releases.ubuntu.com/24.04"

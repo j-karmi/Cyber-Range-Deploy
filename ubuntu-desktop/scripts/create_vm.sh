@@ -17,18 +17,18 @@ require curl
 require virsh
 #====================================
 #Parsovani config.yaml
-NAME=$(yq -r '.vm.name' $CONFIG)
-RAM=$(yq -r '.vm.ram' $CONFIG)
-VCPUS=$(yq -r '.vm.vcpus' $CONFIG)
-DISK=$(yq -r '.vm.disk_gb' $CONFIG)
-ISO=$(yq -r '.os.iso' $CONFIG)
-VARIANT=$(yq -r '.os.variant' $CONFIG)
-HOSTNAME=$(yq -r '.system.hostname' $CONFIG)
-TIMEZONE=$(yq -r '.system.timezone' $CONFIG)
-LOCALE=$(yq -r '.system.locale' $CONFIG)
-KEYBOARD=$(yq -r '.system.keyboard' $CONFIG)
-NETWORK=$(yq -r '.network.libvirt_network' $CONFIG)
-INDEX=$(yq -r '.web.index_file' $CONFIG)
+NAME=$(yq -r '.ubu.vm.name' $CONFIG)
+RAM=$(yq -r '.ubu.vm.ram' $CONFIG)
+VCPUS=$(yq -r '.ubu.vm.vcpus' $CONFIG)
+DISK=$(yq -r '.ubu.vm.disk_gb' $CONFIG)
+ISO=$(yq -r '.ubu.os.iso' $CONFIG)
+VARIANT=$(yq -r '.ubu.os.variant' $CONFIG)
+HOSTNAME=$(yq -r '.ubu.system.hostname' $CONFIG)
+TIMEZONE=$(yq -r '.ubu.system.timezone' $CONFIG)
+LOCALE=$(yq -r '.ubu.system.locale' $CONFIG)
+KEYBOARD=$(yq -r '.ubu.system.keyboard' $CONFIG)
+NETWORK=$(yq -r '.ubu.network.libvirt_network' $CONFIG)
+INDEX=$(yq -r '.ubu.web.index_file' $CONFIG)
 
 WORKDIR="./build-$NAME"
 
@@ -36,7 +36,7 @@ WORKDIR="./build-$NAME"
 # Rezervuji misto na virtualni hdd na disku
 echo "Creating disk..."
 qemu-img create -f qcow2 -F qcow2 \
--b ubuntu-24.04-server-cloudimg-amd64.img $WORKDIR/disk.qcow2 20G
+-b $ISO $WORKDIR/disk.qcow2 20G
 
 #=====================================
 # Zacinam s instalaci 
