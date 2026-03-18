@@ -49,7 +49,7 @@ Po vybrání první možnosti se postupně spouští ostatní pomocné scripty.
 ## Instalace Ubuntu Desktop
 
 Scripty pro instalaci Ubuntu Linuxu nejsou funkční. Nepodařilo se mi napsat script tak, aby správně importoval data z config.yaml a aplikoval je do bezobslužné instalace.  
-Testoval jsem jak iso plného desktopu (proto název složek), tak pro VM s web serverem výrazně vhodnější předinstalované verze cloudimage.
+Testoval jsem jak img výrazně vhodnější předinstalované verze cloudimage pro VM s web serverem tak iso plného desktopu (proto název složek).  
 Při vývoji se mi podařilo napsat script tak, aby se instalace spustila v klasickém "klikacím" gui, kde stačilo stiskem tlačítka spustit instalaci, kdy se úspěšně aplikovaly požadované nastavení a uživatelské účty z config.yaml.
 Při následném "ladění", aby instalace probíhala bez grafického rozhraní a zcela bezobslužně se mi ovšem podařilo vše rozbít a teď se pouze nainstaluje a spustí holý linux z img bez modifikací.  
 

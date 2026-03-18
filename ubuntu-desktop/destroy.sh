@@ -5,10 +5,9 @@
 # Konfiguracni soubor
 CONFIG=config.yaml
 # Nazev slozky pro build
-BUILD=build
 
 NAME=$(yq -r '.ubu.vm.name' $CONFIG)
-
+BUILD=build-$NAME
 DISK_NAME=disk
 
 virsh destroy $NAME

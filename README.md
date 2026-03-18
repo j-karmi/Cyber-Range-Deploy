@@ -65,7 +65,8 @@ instalační script:
 
 ---
 Sekvence instalace probíhá v pořadí:
-- stažení iso souboru `ubuntu-24.04-server-cloudimg-amd64.img`
+- stažení iso souboru `ubuntu-24.04.4-desktop-amd64.iso`
 - vygenerování `user-data` dle atributů v ubuntu-desktop/config.yaml a statického `meta-data` a následné vytvoření `seed.iso`
 - vytvoření VM pomocí `virt-install`
-- !! NEAPLIKOVÁNÍ seed.iso !! --> po instalaci je použitelný pouze defaultní uživatel `ubuntu` a není spuštěný web serve ani naimporotvaný index.html <-- TODO
+- grafický instalátor reportuje 2 chyby, špatně napsaný user-data?? <-- TODO
+- !! NEAPLIKOVÁNÍ seed.iso !! --> po instalaci je použitelný pouze defaultní uživatel `ubuntu` a není spuštěný web server ani naimporotvaný index.html <-- TODO

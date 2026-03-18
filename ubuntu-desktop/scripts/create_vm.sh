@@ -23,10 +23,6 @@ VCPUS=$(yq -r '.ubu.vm.vcpus' $CONFIG)
 DISK=$(yq -r '.ubu.vm.disk_gb' $CONFIG)
 ISO=$(yq -r '.ubu.os.iso' $CONFIG)
 VARIANT=$(yq -r '.ubu.os.variant' $CONFIG)
-HOSTNAME=$(yq -r '.ubu.system.hostname' $CONFIG)
-TIMEZONE=$(yq -r '.ubu.system.timezone' $CONFIG)
-LOCALE=$(yq -r '.ubu.system.locale' $CONFIG)
-KEYBOARD=$(yq -r '.ubu.system.keyboard' $CONFIG)
 NETWORK=$(yq -r '.ubu.network.libvirt_network' $CONFIG)
 INDEX=$(yq -r '.ubu.web.index_file' $CONFIG)
 
@@ -35,8 +31,7 @@ WORKDIR="./build-$NAME"
 #=====================================
 # Rezervuji misto na virtualni hdd na disku
 echo "Creating disk..."
-qemu-img create -f qcow2 -F qcow2 \
--b $ISO $WORKDIR/disk.qcow2 20G
+qemu-img create -f qcow2 $WORKDIR/disk.qcow2 $DISK
 
 #=====================================
 # Zacinam s instalaci 

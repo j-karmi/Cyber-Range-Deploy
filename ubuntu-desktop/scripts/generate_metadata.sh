@@ -5,7 +5,13 @@ set -e
 CONFIG=config.yaml
 
 NAME=$(yq -r '.ubu.vm.name' $CONFIG)
+HOST_NAME=$(yq -r '.ubu.system.hostname' $CONFIG)
 INDEX=$(yq -r '.ubu.web.index_file' $CONFIG)
+
+TIMEZONE=$(yq -r '.ubu.system.timezone' $CONFIG)
+LOCALE=$(yq -r '.ubu.system.locale' $CONFIG)
+KEYBOARD=$(yq -r '.ubu.system.keyboard' $CONFIG)
+
 
 WORKDIR="./build-$NAME"
 mkdir -p $WORKDIR
@@ -49,17 +55,17 @@ PACKAGES_COUNT=$(yq -r '.ubu.packages | length' $CONFIG)
 for ((i=0;i<$PACKAGES_COUNT;i++)); do
 PACKAGE=$(yq -r ".ubu.packages[$i]" $CONFIG)
 PACKAGES_BLOCK="$PACKAGES_BLOCK
-    - $PACKAGE"
+    - $PACKAGE
+    "
 
 done
-
 
 # Vytvoreni souboru potrebnych pro vytvoreni seed.iso: user-data a meta-data
 # Meta-data je statické:
 
 cat > $WORKDIR/meta-data <<EOF
 instance-id: $NAME
-local-hostname: $HOSTNAME
+local-hostname: $HOST_NAME
 EOF
 
 # User-data je slozitejsi:
@@ -69,7 +75,7 @@ autoinstall:
   version: 1
 
   identity:
-    hostname: $HOSTNAME
+    hostname: $HOST_NAME
     username: $PRIMARY_USER
     password: $PRIMARY_PASS
 
@@ -89,7 +95,7 @@ autoinstall:
       name: direct
 
   packages:
-$PACKAGE_BLOCK
+$PACKAGES_BLOCK
 
   user-data:
     users:
