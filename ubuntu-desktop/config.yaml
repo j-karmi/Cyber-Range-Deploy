@@ -6,7 +6,9 @@ ubu:
     disk_gb: 20
 
   os:
+    iso_path: https://cloud-images.ubuntu.com/releases/noble/release/
     iso: ubuntu-24.04-server-cloudimg-amd64.img
+    #iso_path: https://releases.ubuntu.com/24.04/
     #iso: ubuntu-24.04.4-desktop-amd64.iso
     variant: ubuntu24.04
  

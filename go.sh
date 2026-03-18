@@ -7,7 +7,6 @@ echo "[3] Instalace obou Vms"
 echo "[4] Konec"
 
 read -p "Zadej volbu: " choice
-read -p "Zadejte volbu: " volba
 
 case "$choice" in
     1)
@@ -18,7 +17,7 @@ case "$choice" in
 
     2)
         echo "Spoustim instalaci Ubuntu Desktop..."
-        cd ubuntu || { echo "Slozka ubuntu nebyla nalezena"; exit 1; }
+        cd ubuntu-desktop || { echo "Slozka ubuntu-desktop nebyla nalezena"; exit 1; }
         ./deploy.sh
         ;;
 
